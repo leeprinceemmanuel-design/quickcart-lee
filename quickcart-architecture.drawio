@@ -1,0 +1,56 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram id="quickcart-arch" name="QuickCart Architecture">
+    <mxGraphModel dx="1400" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="QuickCart &#8212; Three-Layer Architecture" style="text;html=1;align=left;verticalAlign=middle;fontSize=26;fontStyle=1;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="700" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="PDC50 &#183; Module I Individual Mastery Lab &#183; Part 1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontColor=#52606D;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="700" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="rule" value="No arrow runs from Client to Data.&lt;br&gt;&lt;font color=&quot;#52606D&quot;&gt;The browser reaches storage only through the API layer.&lt;/font&gt;" style="text;html=1;align=right;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#B03030;" vertex="1" parent="1">
+          <mxGeometry x="840" y="34" width="520" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="client" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#2F6FB3&quot;&gt;CLIENT LAYER&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;i&gt;&lt;font color=&quot;#52606D&quot;&gt;React + Vite + TypeScript &#183; localhost:5173&lt;/font&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Responsibilities&lt;/b&gt;&lt;br&gt;&lt;br&gt;Renders the catalog list, the product detail view, and the order form&lt;br&gt;&lt;br&gt;Sends HTTP requests to the API and displays whatever comes back&lt;br&gt;&lt;br&gt;Holds no business rules and never talks to the database directly" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F1FB;strokeColor=#2F6FB3;strokeWidth=2;verticalAlign=top;spacing=12;fontSize=13;fontColor=#1F2933;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="340" height="290" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#2E7D43&quot;&gt;API LAYER&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;i&gt;&lt;font color=&quot;#52606D&quot;&gt;NestJS + TypeScript &#183; localhost:3000&lt;/font&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Responsibilities&lt;/b&gt;&lt;br&gt;&lt;br&gt;Receives each HTTP request and routes it to the matching controller&lt;br&gt;&lt;br&gt;Validates order data before anything is saved (quantity &gt; 0, product exists)&lt;br&gt;&lt;br&gt;Applies the business rules &#8212; stock check, order total &#8212; and returns JSON" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F6EC;strokeColor=#2E7D43;strokeWidth=2;verticalAlign=top;spacing=12;fontSize=13;fontColor=#1F2933;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="530" y="150" width="340" height="290" as="geometry" />
+        </mxCell>
+
+        <mxCell id="data" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#B5701F&quot;&gt;DATA LAYER&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;i&gt;&lt;font color=&quot;#52606D&quot;&gt;PostgreSQL&lt;/font&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Responsibilities&lt;/b&gt;&lt;br&gt;&lt;br&gt;Stores the Product, Order and OrderItem rows&lt;br&gt;&lt;br&gt;Enforces the relationships: one Order has many OrderItems, and each OrderItem points to one Product&lt;br&gt;&lt;br&gt;Reachable only from the API layer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF1E3;strokeColor=#B5701F;strokeWidth=2;verticalAlign=top;spacing=12;fontSize=13;fontColor=#1F2933;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="150" width="340" height="290" as="geometry" />
+        </mxCell>
+
+        <mxCell id="req" value="HTTP request (JSON)" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#2F6FB3;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#2F6FB3;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="res" value="HTTP response (JSON)" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#2F6FB3;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#2F6FB3;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="client">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rw" value="reads / writes" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B5701F;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#B5701F;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rs" value="result set" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B5701F;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#B5701F;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" edge="1" parent="1" source="data" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="endpoints" value="&lt;b&gt;&lt;font color=&quot;#2E7D43&quot; style=&quot;font-size: 15px;&quot;&gt;REST endpoints exposed by the API layer&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;&lt;font color=&quot;#2F6FB3&quot;&gt;GET&lt;/font&gt;&lt;/b&gt;&#160;&#160;&#160;&#160;/api/products&#160;&#160;&#160;&#8212;&#160;list every product in the catalog&lt;br&gt;&lt;b&gt;&lt;font color=&quot;#2F6FB3&quot;&gt;GET&lt;/font&gt;&lt;/b&gt;&#160;&#160;&#160;&#160;/api/products/:id&#160;&#160;&#160;&#8212;&#160;return one product's full details&lt;br&gt;&lt;b&gt;&lt;font color=&quot;#2E7D43&quot;&gt;POST&lt;/font&gt;&lt;/b&gt;&#160;&#160;&#160;/api/orders&#160;&#160;&#160;&#8212;&#160;create a new order from the cart&lt;br&gt;&lt;b&gt;&lt;font color=&quot;#B5701F&quot;&gt;PATCH&lt;/font&gt;&lt;/b&gt;&#160;&#160;/api/orders/:id&#160;&#160;&#160;&#8212;&#160;update an existing order's status&lt;br&gt;&lt;b&gt;&lt;font color=&quot;#B03030&quot;&gt;DELETE&lt;/font&gt;&lt;/b&gt;&#160;/api/products/:id&#160;&#160;&#160;&#8212;&#160;admin removes a product&lt;br&gt;&lt;b&gt;&lt;font color=&quot;#2F6FB3&quot;&gt;GET&lt;/font&gt;&lt;/b&gt;&#160;&#160;&#160;&#160;/api/health&#160;&#160;&#160;&#8212;&#160;liveness check the client calls on load" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D43;strokeWidth=2;dashed=1;verticalAlign=top;spacing=12;fontSize=13;fontColor=#1F2933;align=left;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="430" y="500" width="540" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="link" style="edgeStyle=none;html=1;strokeColor=#2E7D43;strokeWidth=2;dashed=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="endpoints">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="foot" value="Module I implements only GET /api/health end to end; the other endpoints are the designed surface, built in later modules." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontStyle=2;fontColor=#52606D;" vertex="1" parent="1">
+          <mxGeometry x="40" y="760" width="900" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
